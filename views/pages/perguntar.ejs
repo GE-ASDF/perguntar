@@ -1,0 +1,51 @@
+<%- include("../partials/cabecalho") %>
+
+<% if(success.length > 0){ %>
+<div id="mensagem-informacional" class="form-group d-flex flex-column">
+    <span class="alert m-0 alert-success">
+        <%= success %>
+        <button class="btn-close mx-1"></button>
+    </span>
+</div>
+<% }else if(error.length > 0){ %>
+<div id="mensagem-informacional" class="form-group d-flex flex-column">
+    <span class="alert m-0 alert-danger">
+        <%= error %>
+        <button class="btn-close mx-1"></button>
+    </span>
+</div>
+<% } %>
+
+<section id="secao-de-perguntas" class="container border p-2 mt-4">
+    
+    <form method="POST" action="/fazer-pergunta" class="form bg-dark text-white p-4 rounded">
+        <h1 class="mb-2 title text-white">Perguntar</h1>
+        <div class="form-group">
+            <label class="title fs-5 mb-1 fw-bold" for="titulo">Título</label>
+            <input placeholder="Digite o título da pergunta" type="text" name="titulo" class="form-control w-25">
+            <% if(titulo.length > 0){ %>
+                <div class="form-group d-flex flex-column">
+                    <span class="alert m-0 alert-danger">
+                        <%= titulo %>
+                        <button class="btn-close mx-1"></button>
+                    </span>
+                </div>
+            <% } %> 
+        </div>
+        <div class="mt-2 form-group">
+            <label class="title fs-5 mb-1 fw-bold" for="pergunta">Digite sua pergunta</label>
+            <textarea placeholder="Digite sua pergunta" class="form-control" name="pergunta" id="" cols="30" rows="10"></textarea>
+            <% if(pergunta.length > 0){ %>
+                <div class="form-group d-flex flex-column">
+                    <span class="alert m-0 alert-danger">
+                        <%= pergunta %>
+                        <button class="btn-close mx-1"></button>
+                    </span>
+                </div>
+            <% } %> 
+        </div>
+        <button class="btn btn-primary mt-3">Perguntar</button>
+    </form>
+</section>
+
+<%- include("../partials/rodape") %>
