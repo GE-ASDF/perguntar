@@ -1,0 +1,58 @@
+<%- include("../partials/cabecalho") %>
+<% if(success.length > 0){ %>
+  <div id="mensagem-informacional" class="form-group d-flex flex-column">
+      <span class="alert m-0 d-flex justify-content-between align-items-center alert-success">
+          <p><%= success %></p>
+          <button type="button" class="btn btn-light btn-close mx-1"></button>
+      </span>
+  </div>
+  <% }else if(error.length > 0){ %>
+  <div id="mensagem-informacional" class="form-group d-flex flex-column">
+      <span class="alert m-1 d-flex justify-content-between align-items-center alert-danger">
+          <p><%= error %></p>
+          <button type="button" class="btn btn-light btn-close mx-1"></button>
+      </span>
+  </div>
+  <% } %>
+<section id="secao-de-pergunta" class="container border p-2 mt-4">
+    <div class="card text-start">
+      <div class="card-body">
+        <h4 class="card-title"><%= pergunta.titulo %></h4>
+        <p class="card-text"><%= pergunta.pergunta %></p>
+      </div>
+      <div class="card-footer">
+        <h4 class="card-title"><i class="bi bi-reply"></i> Responder</h4>
+        <form action="/responder-pergunta" method="POST">
+          <input type="hidden" name="idpergunta" value="<%= pergunta.id %>">
+          <div class="form-group">
+            <textarea autofocus id="resposta" type="text" placeholder="Digite sua resposta, mas seja educado." cols="30" rows="3" class="form-control" name="corpo"></textarea>
+          </div>
+          <% if(corpo.length > 0){ %>
+            <div class="form-group d-flex flex-column">
+                <span class="alert m-1 d-flex justify-content-between align-items-center alert-danger">
+                    <p><%= corpo %></p>
+                    <button type="button" class="btn btn-light btn-close mx-1"></button>
+                </span>
+            </div>
+          <% } %> 
+          <div class="form-group mt-2">
+            <button type="submit" class="btn btn-primary"><i class="bi bi-reply"> </i>Responder</button>
+          </div>
+        </form>
+      </div>
+    </div>  
+</section>
+<section class="container p-2 mt-4">
+<% respostas.forEach(resposta =>{%>
+<div class="card mb-2 text-start border">
+  <div class="card-header">
+    <h4><%= pergunta.titulo %></h4>
+  </div>
+  <card class="card-body">
+    <p class="text"><%= resposta.corpo %></p>
+  </card>
+</div>
+<% }) %>
+</section>
+
+<%- include("../partials/rodape") %>

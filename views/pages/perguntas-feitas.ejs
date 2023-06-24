@@ -1,0 +1,50 @@
+<%- include("../partials/cabecalho") %>
+
+<% if(error.length > 0){ %>
+<div id="mensagem-informacional" class="form-group d-flex flex-column">
+    <span class="alert m-0 alert-danger">
+        <%= error %>
+        <button class="btn-close mx-1"></button>
+    </span>
+</div>
+<% }else if(id.length > 0) { %>
+    <div id="mensagem-informacional" class="form-group d-flex flex-column">
+        <span class="alert m-0 alert-danger">
+            <%= id %>
+            <button class="btn-close mx-1"></button>
+        </span>
+    </div>
+<% } %>
+
+<section id="secao-de-perguntas" class="container p-2 mt-4">
+    <div class="header mb-2">
+        <div class="link-item mb-1">
+            <a href="/perguntar" class="btn btn-primary">Perguntar</a>
+        </div>
+        <div class="title">
+            <h1>Perguntas feitas <i class="bi bi-question-circle"></i></h1>
+        </div>
+    </div>
+    <% perguntas.forEach( pergunta => { %> 
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item mt-2">
+          <h2 class="accordion-header" id="n-<%= pergunta.id %>">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#n<%= pergunta.id %>" aria-expanded="true" aria-controls="n<%= pergunta.id %>">
+                <div class="accordion-header-content d-flex flex-column">
+                    <h4> <%= pergunta.titulo %> </h4>
+                    <p class="fs-7"><%= pergunta.pergunta %></p>
+                </div>
+            </button>
+          </h2>
+          <div id="n<%= pergunta.id %>" class="accordion-collapse collapse show" aria-labelledby="n-<%= pergunta.id %>" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <!-- <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow. -->
+              <a href="/pergunta/<%= pergunta.id %>" class="btn btn-primary">Responder</a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+      </div>
+</section>
+
+<%- include("../partials/rodape") %>

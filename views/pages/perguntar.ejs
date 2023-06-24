@@ -2,21 +2,21 @@
 
 <% if(success.length > 0){ %>
 <div id="mensagem-informacional" class="form-group d-flex flex-column">
-    <span class="alert m-0 alert-success">
-        <%= success %>
+    <span class="alert m-0 d-flex justify-content-between align-items-center alert-success">
+        <p><%= success %></p>
         <button class="btn-close mx-1"></button>
     </span>
 </div>
 <% }else if(error.length > 0){ %>
 <div id="mensagem-informacional" class="form-group d-flex flex-column">
-    <span class="alert m-0 alert-danger">
-        <%= error %>
+    <span class="alert m-0 d-flex justify-content-between align-items-center alert-danger">
+        <p><%= error %></p>
         <button class="btn-close mx-1"></button>
     </span>
 </div>
 <% } %>
 
-<section id="secao-de-perguntas" class="container border p-2 mt-4">
+<section id="secao-de-perguntar" class="container border p-2 mt-4">
     
     <form method="POST" action="/fazer-pergunta" class="form bg-dark text-white p-4 rounded">
         <h1 class="mb-2 title text-white">Perguntar</h1>
@@ -25,8 +25,8 @@
             <input placeholder="Digite o título da pergunta" type="text" name="titulo" class="form-control w-25">
             <% if(titulo.length > 0){ %>
                 <div class="form-group d-flex flex-column">
-                    <span class="alert m-0 alert-danger">
-                        <%= titulo %>
+                    <span class="alert m-0 d-flex justify-content-between align-items-center alert-danger">
+                        <p><%= titulo %></p>
                         <button class="btn-close mx-1"></button>
                     </span>
                 </div>
@@ -37,8 +37,8 @@
             <textarea placeholder="Digite sua pergunta" class="form-control" name="pergunta" id="" cols="30" rows="10"></textarea>
             <% if(pergunta.length > 0){ %>
                 <div class="form-group d-flex flex-column">
-                    <span class="alert m-0 alert-danger">
-                        <%= pergunta %>
+                    <span class="alert m-0 d-flex justify-content-between align-items-center alert-danger">
+                        <p><%= pergunta %></p>
                         <button class="btn-close mx-1"></button>
                     </span>
                 </div>
